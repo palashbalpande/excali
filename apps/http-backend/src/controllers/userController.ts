@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { getJwtUserCode } from "../utils/getJwtUserCode";
 
 export const signUpUser = async (
   req: Request,
@@ -13,7 +14,16 @@ export const signInUser = async (
   res: Response,
   next: NextFunction
 ) => {
-  next();
+  try {
+    const JWT_USER_CODE = getJwtUserCode("JWT_USER_CODE");
+    next();
+  } catch (err) {
+    console.error("Error login: ", err);
+    res.status(403).json({
+      message: "Login failed, Incorrect Creds",
+      error: err instanceof Error ? err.message : "Unknown error",
+    });
+  }
 };
 
 export const roomUser = async (

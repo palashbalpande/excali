@@ -1,7 +1,10 @@
+import "dotenv/config.js";
 import express from "express";
 import { indexRouter } from "./routes/indexRouter";
 
 const app = express();
+
+app.use(express.json());
 
 app.use("/api/v1/", indexRouter);
 
