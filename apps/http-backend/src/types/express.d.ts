@@ -1,6 +1,6 @@
-import { JwtPayload } from "jsonwebtoken";
+//import { JwtPayload } from "jsonwebtoken";
 
-declare module "express-serve-static-core" {
+declare namespace Express {
   interface Request {
     userId?: string | JwtPayload;
   }
