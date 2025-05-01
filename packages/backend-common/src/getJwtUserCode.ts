@@ -1,3 +1,4 @@
+import "dotenv-config.js";
 export const getJwtUserCode = (jwtUserCode: string): string => {
   const value = process.env["jwtUserCode"];
   if (!value) {

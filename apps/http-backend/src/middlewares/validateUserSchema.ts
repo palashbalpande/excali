@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { userSignUpSchema } from "./userSignUpSchema";
+import { userSignUpSchema } from "@repo/common/userSignUpSchema";
 
 export const validateSignUpSchema = (
   req: Request,
@@ -15,3 +15,4 @@ export const validateSignUpSchema = (
   }
   next();
 };
+

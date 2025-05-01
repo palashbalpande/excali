@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { getJwtUserCode } from "../utils/getJwtUserCode";
+import { getJwtUserCode } from "@repo/backend-common/getJwtUserCode";
 import jwt, { JwtPayload } from "jsonwebtoken";
 
 export const userMiddleware = async (

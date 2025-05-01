@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { getJwtUserCode } from "../utils/getJwtUserCode";
+import { getJwtUserCode } from "@repo/backend-common/getJwtUserCode";
 
 export const signUpUser = async (
   req: Request,

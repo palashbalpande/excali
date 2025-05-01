@@ -16,7 +16,12 @@ wss.on("connection", function connection(ws, request) {
 
   const decoded = jwt.verify(token, JWT_USER_CODE);
 
-  if (!decoded || !(decoded as JwtPayload).id) {
+  if (typeof decoded == "string") {
+    ws.close();
+    return;
+  }
+
+  if (!decoded || !decoded.id) {
     ws.close();
     return;
   }
