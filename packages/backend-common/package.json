@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "exports": {
-    "./getJwtUserCode": "./src/getJwtUserCode"
+    "./getJwtUserCode": "./src/getJwtUserCode.ts"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,11 +13,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.5.0",
     "zod": "^3.24.3"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "@repo/typescript-config": "workspace:*"
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^22.14.0"
   }
 }

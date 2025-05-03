@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { userSignUpSchema } from "@repo/common/userSignUpSchema";
+import { userSignUpSchema } from "@repo/common/zodTypes";
 
 export const validateSignUpSchema = (
   req: Request,

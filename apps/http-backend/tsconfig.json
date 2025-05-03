@@ -3,7 +3,7 @@
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "./dist",
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
       "@repo/backend-common/*": ["packages/backend-common/*"],
       "@repo/*": ["packages/*"] // This might be a broader mapping
