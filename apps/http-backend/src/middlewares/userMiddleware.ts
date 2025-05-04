@@ -33,11 +33,11 @@ export const userMiddleware = async (
   try {
     const decoded = jwt.verify(token as string, JWT_USER_CODE) as JwtPayload;
 
-    if (!decoded.id) {
+    if (!decoded.userId) {
       res.status(403).json({ message: "Unauthorized user" });
       return;
     }
-    req.userId = decoded.id;
+    req.userId = decoded.userId;
     next();
   } catch (err) {
     res.status(403).json({ message: "Unauthorized" });

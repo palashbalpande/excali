@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { WebSocketServer } from "ws";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { getJwtUserCode } from "@repo/backend-common/getJwtUserCode";

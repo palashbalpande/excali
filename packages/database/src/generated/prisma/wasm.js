@@ -130,6 +130,7 @@ exports.Prisma.UserScalarFieldEnum = {
 
 exports.Prisma.RoomScalarFieldEnum = {
   id: 'id',
+  roomName: 'roomName',
   slug: 'slug',
   createdAt: 'createdAt',
   adminId: 'adminId'
@@ -150,6 +151,11 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 

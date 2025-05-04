@@ -1,16 +1,19 @@
 import { IRouter, Router } from "express";
 import {
-  roomUser,
+  roomName,
   signInUser,
   signUpUser,
 } from "../controllers/userController";
-import { validateSignUpSchema } from "../middlewares/validateUserSchema";
+import {
+  validateSignInSchema,
+  validateSignUpSchema,
+} from "@repo/common/validateZodTypes";
 import { userMiddleware } from "../middlewares/userMiddleware";
 
 export const userRouter: IRouter = Router();
 
 userRouter.post("/signup", validateSignUpSchema, signUpUser);
 
-userRouter.post("/signin", signInUser);
+userRouter.post("/signin", validateSignInSchema, signInUser);
 
-userRouter.post("/room", userMiddleware, roomUser);
+userRouter.post("/room", userMiddleware, roomName);
