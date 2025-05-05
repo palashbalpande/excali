@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { getJwtUserCode } from "@repo/backend-common/getJwtUserCode";
 import { prismaClient } from "@repo/database/client";
 import { RoomBody, SignInBody, SignUpBody } from "@repo/common/zodTypes";
@@ -6,11 +6,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { v4 as uuidv4 } from "uuid";
 
-export const signUpUser = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const signUpUser = async (req: Request, res: Response) => {
   const { firstName, lastName, email, password } = req.body as SignUpBody;
   const hashedPassword = await bcrypt.hash(password, 8);
   try {
@@ -31,6 +27,7 @@ export const signUpUser = async (
         email: email,
         password: hashedPassword,
         name: `${firstName} ${lastName}`,
+        photo: "abc.jpg"
       },
     });
 
@@ -38,8 +35,6 @@ export const signUpUser = async (
       message: "User Created",
       user: newUser,
     });
-
-    next();
   } catch (err) {
     console.error("Error during SignUp", err);
     res.status(409).json({
@@ -51,11 +46,7 @@ export const signUpUser = async (
   }
 };
 
-export const signInUser = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const signInUser = async (req: Request, res: Response) => {
   const { email, password } = req.body as SignInBody;
   try {
     const user = await prismaClient.user.findUnique({
@@ -80,8 +71,6 @@ export const signInUser = async (
     const token = jwt.sign({ userId: user.id }, JWT_USER_CODE);
 
     res.json({ message: "Login Succeeded", token });
-
-    next();
   } catch (err) {
     console.error("Error login: ", err);
     res.status(403).json({
@@ -93,11 +82,7 @@ export const signInUser = async (
   }
 };
 
-export const roomName = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const roomName = async (req: Request, res: Response) => {
   const { roomName } = req.body as RoomBody;
   const userId = req.userId;
   if (!userId) {
@@ -119,7 +104,6 @@ export const roomName = async (
       message: "Room created successfully",
       room: newRoom,
     });
-    next();
   } catch (err) {
     console.error("Error creating room", err);
     res.status(500).json({

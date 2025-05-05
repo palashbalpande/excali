@@ -3,12 +3,12 @@ import {
   roomName,
   signInUser,
   signUpUser,
-} from "../controllers/userController";
+} from "../controllers/userController.js";
 import {
   validateSignInSchema,
   validateSignUpSchema,
 } from "@repo/common/validateZodTypes";
-import { userMiddleware } from "../middlewares/userMiddleware";
+import { userMiddleware } from "../middlewares/userMiddleware.js";
 
 export const userRouter: IRouter = Router();
 

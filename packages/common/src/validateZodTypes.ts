@@ -1,5 +1,10 @@
-import { NextFunction, Request, Response } from "express";
-import { userSignInSchema, userSignUpSchema } from "@repo/common/zodTypes";
+import type { Request, Response, NextFunction } from "express";
+
+import {
+  createRoomSchema,
+  userSignInSchema,
+  userSignUpSchema,
+} from "@repo/common/zodTypes";
 
 export const validateSignUpSchema = (
   req: Request,
@@ -12,6 +17,7 @@ export const validateSignUpSchema = (
       message: "Email taken OR Incorrect inputs",
       error: validation.error?.format(),
     });
+    return;
   }
   next();
 };
@@ -25,6 +31,21 @@ export const validateSignInSchema = (
   if (!validation.success) {
     res.status(400).json({
       message: "Incorrect inputs",
+      error: validation.error?.format(),
+    });
+  }
+  next();
+};
+
+export const validateRoomName = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const validation = createRoomSchema.safeParse(req.body);
+  if (!validation.success) {
+    res.status(400).json({
+      message: "Minimum 3 letters required",
       error: validation.error?.format(),
     });
   }

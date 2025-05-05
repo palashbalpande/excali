@@ -7,9 +7,9 @@ export const userSignUpSchema = z.object({
   password: z
     .string()
     .min(8, { message: "password must be atleast characters" })
-    .regex(/ [A-Z] /, { message: "atleast one upperCase letter required" })
-    .regex(/ [a-z] /, { message: "atleast one lowerCase letter required" })
-    .regex(/ [\W_] /, { message: "atleast one special character required" }),
+    .regex(/[A-Z]/, { message: "atleast one upperCase letter required" })
+    .regex(/[a-z]/, { message: "atleast one lowerCase letter required" })
+    .regex(/[\W_]/, { message: "atleast one special character required" }),
 });
 
 export const userSignInSchema = z.object({
