@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/controllers/usercontroller.ts","./src/middlewares/usermiddleware.ts","./src/routes/indexrouter.ts","./src/routes/userrouter.ts","./src/types/express.d.ts"],"version":"5.8.2"}
+{"root":["./src/index.ts","./src/controllers/chatscontroller.ts","./src/controllers/usercontroller.ts","./src/middlewares/usermiddleware.ts","./src/routes/chatsrouter.ts","./src/routes/indexrouter.ts","./src/routes/userrouter.ts","./src/types/express.d.ts"],"version":"5.8.2"}

@@ -27,7 +27,7 @@ export const signUpUser = async (req: Request, res: Response) => {
         email: email,
         password: hashedPassword,
         name: `${firstName} ${lastName}`,
-        photo: "abc.jpg"
+        photo: "abc.jpg",
       },
     });
 
@@ -92,7 +92,7 @@ export const roomName = async (req: Request, res: Response) => {
     return;
   }
   try {
-    const slug = `${roomName.toLowerCase().replace(/\s+/g, "-")} - ${uuidv4().substring(0, 8)}`;
+    const slug = `${roomName.toLowerCase().replace(/\s+/g, "-")}-${uuidv4().substring(0, 8)}`;
     const newRoom = await prismaClient.room.create({
       data: {
         slug: slug,
