@@ -1,24 +1,22 @@
 import { prismaClient } from "@repo/database/client";
 import { Request, Response } from "express";
 
-export const chats = async (req: Request, res: Response) => {
+export const room = async (req: Request, res: Response) => {
+  const slug = req.params.slug;
   try {
-    const roomId = Number(req.params.roomId);
-    const messages = await prismaClient.chat.findMany({
+    const room = await prismaClient.room.findFirst({
       where: {
-        roomId: roomId,
+        slug,
       },
-      orderBy: {
-        id: "desc",
-      },
-      take: 50,
     });
-
+    if (!room) {
+      res.status(404).json({ message: "Room not found" });
+    }
     res.json({
-      messages,
+      room,
     });
   } catch (err) {
-    console.error("Error fetching messages:", err);
+    console.error("Error fetching room: ", err);
     res.status(500).json({
       message: "Internal server error",
       error: err instanceof Error ? err.message : "Unknown error",
